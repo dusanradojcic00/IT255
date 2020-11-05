@@ -2,10 +2,19 @@
     padding: 5px;
 }
 
-.room-content {
-    display: flex;
+.room-card {
     border: 1px solid lightgray;
     padding: 20px;
+}
+
+.room-content {
+    display: flex;
+    
+}
+
+.room-btns {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .room-desc {
@@ -20,3 +29,5 @@ img {
 .room-content {
     height: 100%;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

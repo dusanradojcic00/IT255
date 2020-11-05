@@ -9,7 +9,7 @@ export class FilterPipePipe implements PipeTransform {
     if(!items) return[];
     if(!searchText) return items;
     return items.filter(item => {
-      return item.price < parseInt(searchText);
+      return item.price <= parseInt(searchText);
     })
   }
 
