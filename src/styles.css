@@ -5,11 +5,11 @@
 .room-card {
     border: 1px solid lightgray;
     padding: 20px;
+    height: 100%;
 }
 
 .room-content {
     display: flex;
-    
 }
 
 .room-btns {
@@ -27,7 +27,14 @@ img {
 }
 
 .room-content {
+    height: 80%;
+}
+
+html, body {
     height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

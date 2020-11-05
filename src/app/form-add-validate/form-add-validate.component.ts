@@ -1,10 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+  AbstractControl
+} from '@angular/forms';
 import { Room } from '../room/room.model';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-
-
 
 function scoreValidator(control: FormControl): { [s: string]: boolean } {
   if (!(control.value >= 1 && control.value <= 10)) {
@@ -27,12 +30,13 @@ function urlValidator(control: FormControl): { [s: string]: boolean } {
   return pattern.test(control.value) ? null : { invalidUrl: true };
 }
 
+
 @Component({
-  selector: 'app-edit-room-dialog',
-  templateUrl: './edit-room-dialog.component.html',
-  styleUrls: ['./edit-room-dialog.component.css']
+  selector: 'app-form-add-validate',
+  templateUrl: './form-add-validate.component.html',
+  styleUrls: ['./form-add-validate.component.css']
 })
-export class EditRoomDialogComponent {
+export class FormAddValidateComponent implements OnInit {
   myForm: FormGroup;
   name: AbstractControl;
   price: AbstractControl;
@@ -40,41 +44,50 @@ export class EditRoomDialogComponent {
   score: AbstractControl;
   description: AbstractControl;
   room: Room;
+  @Output() add = new EventEmitter<Room>();
 
-  constructor(public dialogRef: MatDialogRef<EditRoomDialogComponent>, @Inject(MAT_DIALOG_DATA) private data, fb: FormBuilder) {
-    this.room = data.room;
+  constructor(fb: FormBuilder) {
     this.myForm = fb.group({
-      'name': [this.room.name, Validators.compose([
+      'name': ['', Validators.compose([
         Validators.required, nameValidator
       ])],
-      'price': [this.room.price, Validators.required],
-      'image': [this.room.image, Validators.compose([
+      'price': ['', Validators.required],
+      'image': ['', Validators.compose([
         Validators.required, urlValidator
       ])],
-      'score': [this.room.score, Validators.compose([
+      'score': ['', Validators.compose([
         Validators.required, scoreValidator
       ])],
-      'description': [this.room.description, Validators.required]
+      'description': ['', Validators.required]
     })
     this.name = this.myForm.controls['name'];
     this.price = this.myForm.controls['price'];
     this.image = this.myForm.controls['image'];
     this.score = this.myForm.controls['score'];
     this.description = this.myForm.controls['description'];
+
+    this.name.valueChanges.subscribe((form: string) => {
+      if (form.length < 6) {
+        console.log("Uneta vrednost je: \"" + form + "\" i ona je kraca od 6 karaktera")
+      }
+    })
+
+    this.description.valueChanges.subscribe((form: string) => {
+      if (form.length < 6) {
+        console.log("Uneta vrednost je: \"" + form + "\" i ona je kraca od 6 karaktera")
+      }
+    })
   }
 
-  editRoom(form: any): void {
+  ngOnInit(): void {
+  }
+
+  onSubmit(form: any): void {
     if (this.myForm.valid) {
-      this.room.name = form.name;
-      this.room.description = form.description;
-      this.room.price = form.price;
-      this.room.score = form.score;
-      this.room.image = form.image;
-      this.dialogRef.close(this.room);
+      this.room = new Room(form.name, form.description, form.price, form.image, form.score);
+      this.add.emit(this.room);
     } else {
-      alert('Nepravilno popunjena forma!');
+      alert("Neispravno popunjena forma");
     }
   }
-
 }
-

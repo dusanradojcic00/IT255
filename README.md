@@ -10,3 +10,8 @@
 * Brisanje i izmena sadržaja
 * Zasebna komponenta za dodavanje soba
 * Korišćenje EventEmitter-a
+
+# IT255 - DZ07
+
+* Validacija forme
+* Posmatranje vrednosti
