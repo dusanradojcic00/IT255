@@ -7,10 +7,13 @@ import { FilterPipePipe } from './helpers/filter-pipe.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomListComponent } from './room-list/room-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { EditRoomDialogComponent } from './edit-room-dialog/edit-room-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormAddComponent } from './form-add/form-add.component';
 import { FormAddValidateComponent } from './form-add-validate/form-add-validate.component';
+import { FormReservationComponent } from './form-reservation/form-reservation.component';
+import { RoomService } from './services/room.service';
+import { EditRoomDialogComponent } from './edit-room-dialog/edit-room-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { FormAddValidateComponent } from './form-add-validate/form-add-validate.
     EditRoomDialogComponent,
     FormAddComponent,
     FormAddValidateComponent,
+    FormReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { FormAddValidateComponent } from './form-add-validate/form-add-validate.
     NoopAnimationsModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: [RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

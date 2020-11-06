@@ -15,3 +15,10 @@
 
 * Validacija forme
 * Posmatranje vrednosti
+
+# IT255 - DZ08
+
+* RoomService sa metodom getPrice(numberOfNights: number)
+* Izračunati cenu 
+* koncept umetanja zavisnosti
+

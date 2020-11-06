@@ -12,6 +12,7 @@ export class RoomComponent implements OnInit {
   @Input() room: Room;
   @Output() delete = new EventEmitter<Room>();
   @Output() edit = new EventEmitter<Room>();
+  @Output() reserve = new EventEmitter<Room>();
   constructor() { }
 
   ngOnInit(): void {
@@ -25,5 +26,7 @@ export class RoomComponent implements OnInit {
     this.edit.emit(this.room);
   }
 
-
+  onReserve(): void {
+    this.reserve.emit(this.room);
+  }
 }
