@@ -22,3 +22,7 @@
 * Izračunati cenu 
 * koncept umetanja zavisnosti
 
+# IT255 - DZ11
+
+* Integrisati pregled soba kroz poglede
+* Svi entiteti moraju biti predstavljeni kroz modele
