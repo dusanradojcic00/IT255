@@ -26,3 +26,8 @@
 
 * Integrisati pregled soba kroz poglede
 * Svi entiteti moraju biti predstavljeni kroz modele
+
+# IT255 - DZ12
+
+* Ngrx skladište (store)
+* Upisivanje stanja modifikovane aplikacije unutar skladišta..

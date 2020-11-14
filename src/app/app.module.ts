@@ -12,8 +12,10 @@ import { FormAddValidateComponent } from './form-add-validate/form-add-validate.
 import { FormReservationComponent } from './form-reservation/form-reservation.component';
 import { RoomService } from './services/room.service';
 import { EditRoomDialogComponent } from './edit-room-dialog/edit-room-dialog.component';
-
-
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './redux/room.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,11 @@ import { EditRoomDialogComponent } from './edit-room-dialog/edit-room-dialog.com
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatDialogModule,
+    StoreModule.forRoot({ rooms: reducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [RoomService],
   bootstrap: [AppComponent]

@@ -42,7 +42,7 @@ export class EditRoomDialogComponent {
   room: Room;
 
   constructor(public dialogRef: MatDialogRef<EditRoomDialogComponent>, @Inject(MAT_DIALOG_DATA) private data, fb: FormBuilder) {
-    this.room = data.room;
+    this.room = this.data.room;
     this.myForm = fb.group({
       'name': [this.room.name, Validators.compose([
         Validators.required, nameValidator
@@ -65,12 +65,8 @@ export class EditRoomDialogComponent {
 
   editRoom(form: any): void {
     if (this.myForm.valid) {
-      this.room.name = form.name;
-      this.room.description = form.description;
-      this.room.price = form.price;
-      this.room.score = form.score;
-      this.room.image = form.image;
-      this.dialogRef.close(this.room);
+      let editedRoom = new Room(form.name, form.description, form.price, form.image, form.score);
+      this.dialogRef.close(editedRoom);
     } else {
       alert('Nepravilno popunjena forma!');
     }

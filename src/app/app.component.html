@@ -6,7 +6,7 @@
 
 
   <div class="row">
-    <app-room *ngFor="let room of rooms | async | filterPipe: searchText; index as i;" [room]="room"
+    <app-room *ngFor="let room of rooms$ | async | filterPipe: searchText; index as i;" [room]="room"
     (delete)="onDelete($event)" (edit)="onEdit($event)" (reserve)="onReserve($event)"></app-room>
   </div>
 
